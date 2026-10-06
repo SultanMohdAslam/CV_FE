@@ -96,7 +96,7 @@ export default function AdminDashboard() {
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              Connected: ep-still-brook-b5v5x46k &bull; All changes persist immediately to database
+              Connected to PostgreSQL Database &bull; All changes persist immediately to database
             </p>
           </div>
         </div>
