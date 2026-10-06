@@ -194,7 +194,7 @@ export default function Hero({ onPrint }) {
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
                   </div>
                   <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-                    aslam.core.engine
+                  
                   </span>
                 </div>
 
