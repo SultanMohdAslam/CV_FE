@@ -15,14 +15,14 @@ import AdminAuthModal from './components/admin/AdminAuthModal';
 import { RefreshCw, AlertTriangle } from 'lucide-react';
 
 function MainAppContent() {
-  const { cvData, loading, error, refreshCv, isAdminOpen } = useCv();
+  const { cvData, loading, error, refreshCv, isAdminOpen, isAdminAuthenticated } = useCv();
 
   const handlePrint = () => {
     window.print();
   };
 
-  // If Admin panel is open, render AdminDashboard
-  if (isAdminOpen) {
+  // If Admin panel is open, render AdminDashboard ONLY when authenticated
+  if (isAdminOpen && isAdminAuthenticated) {
     return <AdminDashboard />;
   }
 

@@ -39,7 +39,7 @@ const TABS = [
 ];
 
 export default function AdminDashboard() {
-  const { cvData, setIsAdminOpen, logoutAdmin, refreshCv } = useCv();
+  const { cvData, closeAdmin, logoutAdmin, refreshCv } = useCv();
   const [activeTab, setActiveTab] = useState('personal');
   const [toast, setToast] = useState(null);
   const [isReseeding, setIsReseeding] = useState(false);
@@ -119,7 +119,7 @@ export default function AdminDashboard() {
 
           <button
             type="button"
-            onClick={() => setIsAdminOpen(false)}
+            onClick={closeAdmin}
             className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20"
             title="Return to public portfolio view"
           >

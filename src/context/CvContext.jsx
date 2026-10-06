@@ -9,35 +9,24 @@ export function CvProvider({ children }) {
   const [error, setError] = useState(null);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isAdminAuthModalOpen, setIsAdminAuthModalOpen] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
-    try {
-      return sessionStorage.getItem('cv_admin_auth') === 'true';
-    } catch {
-      return false;
-    }
-  });
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
   const requestOpenAdmin = useCallback(() => {
-    if (isAdminAuthenticated) {
-      setIsAdminOpen(true);
-    } else {
-      setIsAdminAuthModalOpen(true);
-    }
-  }, [isAdminAuthenticated]);
+    setIsAdminAuthModalOpen(true);
+  }, []);
 
   const authenticateAdmin = useCallback(() => {
-    try {
-      sessionStorage.setItem('cv_admin_auth', 'true');
-    } catch {}
     setIsAdminAuthenticated(true);
     setIsAdminAuthModalOpen(false);
     setIsAdminOpen(true);
   }, []);
 
+  const closeAdmin = useCallback(() => {
+    setIsAdminAuthenticated(false);
+    setIsAdminOpen(false);
+  }, []);
+
   const logoutAdmin = useCallback(() => {
-    try {
-      sessionStorage.removeItem('cv_admin_auth');
-    } catch {}
     setIsAdminAuthenticated(false);
     setIsAdminOpen(false);
   }, []);
@@ -72,6 +61,7 @@ export function CvProvider({ children }) {
     isAdminAuthenticated,
     requestOpenAdmin,
     authenticateAdmin,
+    closeAdmin,
     logoutAdmin,
   };
 
