@@ -8,6 +8,39 @@ export function CvProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isAdminAuthModalOpen, setIsAdminAuthModalOpen] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
+    try {
+      return sessionStorage.getItem('cv_admin_auth') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const requestOpenAdmin = useCallback(() => {
+    if (isAdminAuthenticated) {
+      setIsAdminOpen(true);
+    } else {
+      setIsAdminAuthModalOpen(true);
+    }
+  }, [isAdminAuthenticated]);
+
+  const authenticateAdmin = useCallback(() => {
+    try {
+      sessionStorage.setItem('cv_admin_auth', 'true');
+    } catch {}
+    setIsAdminAuthenticated(true);
+    setIsAdminAuthModalOpen(false);
+    setIsAdminOpen(true);
+  }, []);
+
+  const logoutAdmin = useCallback(() => {
+    try {
+      sessionStorage.removeItem('cv_admin_auth');
+    } catch {}
+    setIsAdminAuthenticated(false);
+    setIsAdminOpen(false);
+  }, []);
 
   const fetchCv = useCallback(async () => {
     try {
@@ -34,6 +67,12 @@ export function CvProvider({ children }) {
     refreshCv: fetchCv,
     isAdminOpen,
     setIsAdminOpen,
+    isAdminAuthModalOpen,
+    setIsAdminAuthModalOpen,
+    isAdminAuthenticated,
+    requestOpenAdmin,
+    authenticateAdmin,
+    logoutAdmin,
   };
 
   return <CvContext.Provider value={value}>{children}</CvContext.Provider>;

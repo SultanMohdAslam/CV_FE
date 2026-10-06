@@ -11,6 +11,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import PrintableCV from './components/PrintableCV';
 import AdminDashboard from './components/admin/AdminDashboard';
+import AdminAuthModal from './components/admin/AdminAuthModal';
 import { RefreshCw, AlertTriangle } from 'lucide-react';
 
 function MainAppContent() {
@@ -78,6 +79,9 @@ function MainAppContent() {
 
       {/* Clean Printable Resume (only visible during print / PDF export) */}
       <PrintableCV />
+
+      {/* Admin Passcode Gatekeeper Modal */}
+      <AdminAuthModal />
     </div>
   );
 }

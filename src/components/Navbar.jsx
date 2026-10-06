@@ -13,7 +13,7 @@ import {
 import { useCv } from '../context/CvContext';
 
 export default function Navbar({ onPrint }) {
-  const { cvData, setIsAdminOpen } = useCv();
+  const { cvData, requestOpenAdmin } = useCv();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -85,7 +85,7 @@ export default function Navbar({ onPrint }) {
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-2.5">
             <button
-              onClick={() => setIsAdminOpen(true)}
+              onClick={requestOpenAdmin}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-400 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/40 rounded-lg transition-all shadow-sm"
               title="Open Admin Control Center"
             >
@@ -123,7 +123,7 @@ export default function Navbar({ onPrint }) {
           {/* Mobile Hamburger */}
           <div className="flex sm:hidden items-center gap-2">
             <button
-              onClick={() => setIsAdminOpen(true)}
+              onClick={requestOpenAdmin}
               className="p-2 text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 rounded-lg"
               title="Admin Portal"
             >
@@ -167,7 +167,7 @@ export default function Navbar({ onPrint }) {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                setIsAdminOpen(true);
+                requestOpenAdmin();
               }}
               className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 rounded-lg"
             >

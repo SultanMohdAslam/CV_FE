@@ -8,6 +8,7 @@ import AdminShowcases from './AdminShowcases';
 import AdminSkills from './AdminSkills';
 import AdminEducation from './AdminEducation';
 import AdminMessages from './AdminMessages';
+import AdminSecurity from './AdminSecurity';
 import {
   User,
   BarChart3,
@@ -21,7 +22,9 @@ import {
   Database,
   CheckCircle,
   AlertCircle,
-  X
+  X,
+  Lock,
+  LogOut
 } from 'lucide-react';
 
 const TABS = [
@@ -31,11 +34,12 @@ const TABS = [
   { id: 'showcases', label: 'Architecture Showcases', icon: Layers },
   { id: 'skills', label: 'Skills & Proficiencies', icon: Cpu },
   { id: 'education', label: 'Education', icon: GraduationCap },
-  { id: 'messages', label: 'Inbox Inquiries', icon: Mail }
+  { id: 'messages', label: 'Inbox Inquiries', icon: Mail },
+  { id: 'security', label: 'Security & Passcode', icon: Lock }
 ];
 
 export default function AdminDashboard() {
-  const { cvData, setIsAdminOpen, refreshCv } = useCv();
+  const { cvData, setIsAdminOpen, logoutAdmin, refreshCv } = useCv();
   const [activeTab, setActiveTab] = useState('personal');
   const [toast, setToast] = useState(null);
   const [isReseeding, setIsReseeding] = useState(false);
@@ -116,10 +120,22 @@ export default function AdminDashboard() {
           <button
             type="button"
             onClick={() => setIsAdminOpen(false)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20"
+            title="Return to public portfolio view"
           >
             <Eye className="w-4 h-4" />
-            <span>View Live CV</span>
+            <span className="hidden sm:inline">View Live CV</span>
+            <span className="sm:hidden">Live CV</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={logoutAdmin}
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 rounded-xl text-xs sm:text-sm font-semibold transition-all"
+            title="Lock admin session and log out"
+          >
+            <LogOut className="w-4 h-4 text-rose-400" />
+            <span className="hidden sm:inline">Lock / Logout</span>
           </button>
         </div>
       </header>
@@ -172,6 +188,7 @@ export default function AdminDashboard() {
           {activeTab === 'skills' && <AdminSkills showToast={showToast} />}
           {activeTab === 'education' && <AdminEducation showToast={showToast} />}
           {activeTab === 'messages' && <AdminMessages showToast={showToast} />}
+          {activeTab === 'security' && <AdminSecurity showToast={showToast} />}
         </main>
       </div>
     </div>

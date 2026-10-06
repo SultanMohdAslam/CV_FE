@@ -130,5 +130,15 @@ export const api = {
   }),
   deleteContactMessage: (id) => request(`/api/contact/${id}`, {
     method: 'DELETE'
+  }),
+
+  // Admin Security
+  verifyAdminPasscode: (passcode) => request('/api/admin/security/verify', {
+    method: 'POST',
+    body: JSON.stringify({ passcode })
+  }),
+  updateAdminPasscode: (currentPasscode, newPasscode) => request('/api/admin/security/passcode', {
+    method: 'PUT',
+    body: JSON.stringify({ currentPasscode, newPasscode })
   })
 };
