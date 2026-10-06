@@ -227,8 +227,8 @@ export default function Hero({ onPrint }) {
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">Trip Orchestration</p>
-                    <p className="text-xs font-bold text-white">Foodi Ridesharing</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-mono"></p>
+                    <p className="text-xs font-bold text-white"></p>
                   </div>
                 </div>
 
@@ -238,8 +238,8 @@ export default function Hero({ onPrint }) {
                     <Server className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">Architecture</p>
-                    <p className="text-xs font-bold text-white">Kafka & ScyllaDB</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-mono"></p>
+                    <p className="text-xs font-bold text-white"></p>
                   </div>
                 </div>
 
